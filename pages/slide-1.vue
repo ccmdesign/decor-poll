@@ -1,19 +1,32 @@
 <template>
   <div>
     <section class="image-selector">
-      <button class="image-selector__image | unstyled">
-        <img src="https://images.unsplash.com/photo-1715967142234-547de15379c7?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+      <button class="image-selector__image | unstyled" @click="logAlt(`${question.image1.label}`)">
+        <img 
+          :src="question.image1.src"
+          :alt="question.image1.label">
       </button>
-      <button class="image-selector__image | unstyled">
-        <img src="https://images.unsplash.com/photo-1715619044226-b693312ffb9b?q=80&w=3331&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+      <button class="image-selector__image | unstyled" @click="logAlt(`${question.image2.label}`)">
+        <img 
+          :src="question.image2.src"
+          :alt="question.image2.label">
       </button>
     </section>
-    <test-nav url="/" />
+    <test-nav :url="question.next" />
   </div>
 </template>
 
 <script setup>
+import { useTestStore } from '@/stores/testStore';
+const { testData } = useTestStore();
+const question = testData.question_1;
 
+
+const logAlt = (altText) => {
+  console.log(altText);
+  testData.question_1.answer = altText;
+  window.location.href = testData.question_1.next;
+};
 </script>
 
 <style scoped lang="scss">
@@ -33,6 +46,13 @@
 .image-selector__image {
   flex: 1;
   overflow: hidden;
+  
+  img { 
+    object-fit: cover;
+    object-position: center center;
+    min-height: 100%;
+    min-width: 100%;
+  }
 
 }
 </style>
