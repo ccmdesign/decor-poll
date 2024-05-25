@@ -20,7 +20,10 @@ import { defineStore } from 'pinia'
 export const useTestStore = defineStore('testStore', () => {
   // Variables
   const testData = ref({
-    "question_1": {
+    name: '',
+    questions: [
+    {
+      id: 1,
       image1: {
         src: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=3243&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         label: 'Cat'
@@ -32,7 +35,8 @@ export const useTestStore = defineStore('testStore', () => {
       answer: '',
       next: '/slide-2'
     },
-    question_2: {
+    {
+      id: 2,
       image1: {
         src: 'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?q=80&w=2877&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         label: 'Chicken'
@@ -44,7 +48,8 @@ export const useTestStore = defineStore('testStore', () => {
       answer: '',
       next: '/slide-3'
     },
-    question_3: {
+    {
+      id: 3,
       image1: {
         src: 'https://images.unsplash.com/photo-1575550959106-5a7defe28b56?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         label: 'Lion'
@@ -54,14 +59,17 @@ export const useTestStore = defineStore('testStore', () => {
         label: 'Elk'
       },
       answer: '',
-      next: '/'
-    },
+      next: '/results'
+    }]
   })
-
-  // Functions
-  
-
+  const setAnswer = (questionId, answer) => {
+    const question = testData.value.questions.find(q => q.id === questionId);
+    if (question) {
+      question.answer = answer;
+    }
+  }
   return { 
-    testData
+    testData,
+    setAnswer
   }
 })
