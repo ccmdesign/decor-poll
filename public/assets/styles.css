@@ -1,4 +1,12 @@
 /* In this file you will add your project wide styles. */
 body {
   height: 100svh;
+  font-optical-sizing: auto;
 }
+
+/* p {
+  font-family: ;
+  
+  font-weight: <weight>;
+  font-style: normal;
+} */

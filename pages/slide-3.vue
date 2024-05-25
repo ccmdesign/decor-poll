@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>Style Assessment - Index</h1>
-    <test-nav url="/slide-1" label="Next"/>
+    <h1>Slide 3</h1>
+    <test-nav url="/" />
   </div>
 </template>
 
